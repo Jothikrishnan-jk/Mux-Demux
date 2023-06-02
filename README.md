@@ -52,17 +52,51 @@ Y0=s1′s0′I <br>
 
 
 ## Program:
+Multiplexer
+```
+module multiplex(I0,I1,I2,I3,s1,s0,y);
+input I0,I1,I2,I3,s0,s1;
+output y;
+wire p,q,r,s,s1d,s0d;
+not(s1d,s1);
+not(s0d,s0);
+and(p,s1d,s0d,I0);
+and(q,s1d,s0,I1);
+and(r,s1,s0d,I2);
+and(s,s1,s0,I3);
+or(y,p,q,r,s);
+endmodule
+```
+Demultiplexer
+```
+module demultiplex(I,s1,s0,y3,y2,y1,y0);
+input I,s1,s0;
+output y3,y2,y1,y0;
+wire s1d,s0d;
+not(s1d,s1);
+not(s0d,s0);
+and(y3,s1,s0,I);
+and(y2,s1,s0d,I);
+and(y1,s1d,s0,I);
+and(y0,s1d,s0d,I);
+endmodule
+```
 
 
 ## RTL Schematic:
+<img width="276" alt="multiplex rtl" src="https://github.com/Jothikrishnan-jk/Mux-Demux/assets/129312867/0ed9c545-9236-4147-8475-923ca6d550cf">
+
+<img width="299" alt="demultiplex" src="https://github.com/Jothikrishnan-jk/Mux-Demux/assets/129312867/1e2e554d-71ad-492c-aa0e-c51b709c7909">
 
 
 
 
 ## Timing Diagram:
+<img width="678" alt="multiplex waveform" src="https://github.com/Jothikrishnan-jk/Mux-Demux/assets/129312867/f4649dbd-28c4-4f4f-b7ae-ca369a3d4aa0">
 
 
+<img width="709" alt="demultiplex wave" src="https://github.com/Jothikrishnan-jk/Mux-Demux/assets/129312867/39e8c5b0-6892-49ed-bd50-2012ea41ca99">
 
-## Result:
+## Result
 Thus the multiplexer and demultiplexer circuits are designed and implemented and the truth tables are verified.
 
